@@ -1,1 +1,2 @@
-# SocialNewsApp
+# Social News App
+This is a project from ["The JavaScipt Way"](https://github.com/bpesquet/thejsway) book by Baptiste Pesquet. It is a simple program for adding and managing links ([source](https://github.com/bpesquet/thejsway/blob/master/manuscript/chapter19.md)).
