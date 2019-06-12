@@ -2,6 +2,21 @@ body {
   background-color: #eee;
 }
 
+.add-link-form {
+  display: none;
+}
+
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.no-gutters>col,
+.no-gutters>[class*="col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
 
 /* Main link element (<div> tag) */
 

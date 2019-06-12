@@ -1,8 +1,10 @@
 'use strict';
 window.onload = function () {
-  const submitBtb = document.querySelector('#submitButton'),
+  const submitBtn = document.querySelector('#submitButton'),
     contentBox = document.querySelector('#content'),
-    addLink = () => {
-
-    };
+    addLinkForm = document.querySelector('#add-link-form');
+  const addLink = () => {
+    addLinkForm.style.display = 'block';
+  };
+  submitBtn.addEventListener('click', () => addLink());
 };
