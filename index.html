@@ -10,8 +10,8 @@
 </head>
 
 <body>
-  <div class="container">
 
+  <div class="container">
     <!-- Bootstrap navigation bar -->
     <nav class="navbar navbar-default">
       <div class="container-fluid">
@@ -32,22 +32,44 @@
         </div>
       </div>
     </nav>
-    <div id="add-link-form" class="add-link-form form-row no-gutters">
+    <div id="addLinkForm" class="linkForm form-row no-gutters">
       <div class="col-md-2">
-        <input type="text" placeholder="Name of adder" class="add-link-input form-control">
+        <input type="text" id="authorInput" placeholder="Author" class="add-link-input form-control" required>
       </div>
       <div class="col-md-4">
-        <input type="text" placeholder="Name of link" class="add-link-input form-control">
+        <input type="text" id="nameInput" placeholder="Name of link" class="add-link-input form-control" required>
       </div>
       <div class="col-md-4">
-        <input type="text" placeholder="Address of link" class="add-link-input form-control">
+        <input type="text" id="addressInput" placeholder="Address of link" class="add-link-input form-control" required>
       </div>
-      <button id="addLinkBtn" class="btn btn-primary">Add link</button>
+      <button id="addLinkBtn" class="btn btn-primary" type="submit">Add link</button>
     </div>
     <div id="content">
       <!-- Dynamic content goes here -->
+      <div id="linkAdded" class="link-added alert alert-success">
+      </div>
+      <div class="link">
+        <h4 class="linkHeadline">
+          <a class="linkTitle" href='https://www.google.com'>Google</a>
+          <span class="linkUrl">https://www.google.com</span>
+        </h4>
+        <span class="linkAuthor">Submitted by Tomek</span>
+      </div>
+      <div class="link">
+        <h4 class="linkHeadline">
+          <a class="linkTitle" href='https://www.facebook.com'>Facebook</a>
+          <span class="linkUrl">https://www.facebook.com</span>
+        </h4>
+        <span class="linkAuthor">Submitted by Tomek</span>
+      </div>
+      <div class="link">
+        <h4 class="linkHeadline">
+          <a class="linkTitle" href='https://www.github.com'>GitHub</a>
+          <span class="linkUrl">https://www.github.com</span>
+        </h4>
+        <span class="linkAuthor">Submitted by Tomek</span>
+      </div>
     </div>
-
   </div>
 
   <!-- JavaScript code goes into this file -->

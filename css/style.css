@@ -2,7 +2,24 @@ body {
   background-color: #eee;
 }
 
-.add-link-form {
+input:invalid {
+  border: 1px solid red;
+}
+
+input:valid {
+  border: 1px solid lightgreen;
+}
+
+.link-added {
+  display: none;
+}
+
+.link-added.success {
+  display: block;
+  animation: fadeOut 2s forwards;
+}
+
+.linkForm {
   display: none;
 }
 
@@ -24,6 +41,7 @@ body {
   background: white;
   padding: 10px;
   margin-bottom: 10px;
+  border-radius: 2px;
 }
 
 
@@ -64,4 +82,18 @@ body {
 
 .linkForm {
   margin-bottom: 20px;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
