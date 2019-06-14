@@ -16,7 +16,7 @@ input:valid {
 
 .link-added.success {
   display: block;
-  animation: fadeOut 2s forwards;
+  animation: fadeOut 2s ease-out forwards;
 }
 
 .linkForm {

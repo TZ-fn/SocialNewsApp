@@ -18,15 +18,17 @@ window.onload = function () {
       alert('Please fill missing data.');
     } else {
       address = (address.slice(0, 7) === 'http://' || address.slice(0, 8) === 'https://') ? address : `http://${address}`;
-      // contentBox.innerHTML += `
-      // <div class="link">
-      //     <h4 class="linkHeadline">
-      //       <a class="linkTitle" href='${address}'>${name}</a>
-      //       <span class="linkUrl">${address}</span>
-      //     </h4>
-      //     <span class="linkAuthor">Submitted by ${author}</span>
-      //   </div>
-      // `;
+      let link = document.createElement('div');
+      link.innerHTML += `
+      <div class="link">
+          <h4 class="linkHeadline">
+            <a class="linkTitle" href='${address}'>${name}</a>
+            <span class="linkUrl">${address}</span>
+          </h4>
+          <span class="linkAuthor">Submitted by ${author}</span>
+        </div>
+      `;
+      contentBox.prepend(link);
       linkAdded.classList += ' success';
       linkAdded.innerHTML = `<p>The link ${name} was successfully added!</p>`;
       authorInput.value = '';
@@ -38,5 +40,5 @@ window.onload = function () {
 
   addLinkBtn.addEventListener('click', () => addLink(authorInput.value.trim(), nameInput.value.trim(), addressInput.value.trim()));
   submitBtn.addEventListener('click', () => showAddLink());
-  linkAdded.addEventListener('animationend', () => linkAdded.style.display = 'none');
+  linkAdded.addEventListener('animationend', () => linkAdded.classList = 'link-added alert alert-success');
 };
