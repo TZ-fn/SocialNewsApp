@@ -34,7 +34,6 @@ input:valid {
   padding-left: 0;
 }
 
-
 /* Main link element (<div> tag) */
 
 .link {
@@ -43,7 +42,6 @@ input:valid {
   margin-bottom: 10px;
   border-radius: 2px;
 }
-
 
 /* Link title (<a> tag) */
 
@@ -57,7 +55,6 @@ input:valid {
   text-decoration: none;
 }
 
-
 /* Link URL (<span> tag) */
 
 .linkUrl {
@@ -65,13 +62,11 @@ input:valid {
   font-size: 80%;
 }
 
-
 /* Link headline containing title & URL (<h4> tag) */
 
 .linkHeadline {
   margin: 0;
 }
-
 
 /* Link author (<span> tag) */
 
