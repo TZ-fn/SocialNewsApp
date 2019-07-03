@@ -2,7 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const jsonParser = bodyParser.json();
-const listener = app.listen(process.env.PORT || 3000, () => {
+const posts = [];
+
+
+app.listen(process.env.PORT || 3000, () => {
   console.log('App running!');
 });
 
@@ -22,6 +25,17 @@ app.get('/', (request, response) => {
 });
 
 app.post('/', jsonParser, (request, response) => {
-
-  response.send();
+  const author = request.body.author;
+  const name = request.body.name;
+  const address = request.body.address;
+  posts.push({
+    author: author,
+    name: name,
+    address: address
+  });
+  response.send({
+    author: author,
+    name: name,
+    address: address
+  });
 });
