@@ -22,10 +22,11 @@ window.onload = function () {
           let link = document.createElement('div');
           link.innerHTML += `
             <div class="link">
-            <h4 class="linkHeadline">
-              <a class="linkTitle" href='${post.address}'>${post.name}</a>
-              <span class="linkUrl">${post.address}</span>
-            </h4>
+              <button class="delete-post-btn"><span class="glyphicon glyphicon-remove" aria-hidden="true"></<span></button>
+              <h4 class="linkHeadline">
+                <a class="linkTitle" href='${post.address}'>${post.name}</a>
+                <span class="linkUrl">${post.address}</span>
+              </h4>
               <span class="linkAuthor">Submitted by ${post.author}</span>
             </div>
             `;

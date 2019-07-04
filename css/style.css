@@ -38,6 +38,14 @@ input:valid {
   display: block;
 }
 
+.delete-post-btn {
+  float: right;
+  margin: 0;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+}
+
 /* Main link element (<div> tag) */
 
 .link {
