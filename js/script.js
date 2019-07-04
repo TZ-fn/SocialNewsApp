@@ -13,42 +13,55 @@ window.onload = function () {
     addLinkForm.classList.toggle('display-block');
   };
 
+  const loadLinks = () => {
+    fetch('http://localhost:3000/links')
+      .then(response => response.json())
+      .then(response => {
+        contentBox.innerHTML = '';
+        response[0].forEach(post => {
+          let link = document.createElement('div');
+          link.innerHTML += `
+            <div class="link">
+            <h4 class="linkHeadline">
+              <a class="linkTitle" href='${post.address}'>${post.name}</a>
+              <span class="linkUrl">${post.address}</span>
+            </h4>
+              <span class="linkAuthor">Submitted by ${post.author}</span>
+            </div>
+            `;
+          contentBox.prepend(link);
+        });
+      });
+  };
+
+  loadLinks();
+
   const addLink = (author, name, address) => {
     if (author === '' || name === '' || address === '') {
       alert('Please fill missing data.');
     } else {
       address = (address.slice(0, 7) === 'http://' || address.slice(0, 8) === 'https://') ? address : `http://${address}`;
+      let link = {
+        author: author,
+        name: name,
+        address: address
+      }
       fetch('http://localhost:3000/', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({
-            author: author,
-            name: name,
-            address: address
-          })
-        }).then(response => response.json())
-        .then(response => {
-          let link = document.createElement('div');
-          link.innerHTML += `
-          <div class="link">
-              <h4 class="linkHeadline">
-                <a class="linkTitle" href='${response.address}'>${response.name}</a>
-                <span class="linkUrl">${response.address}</span>
-              </h4>
-              <span class="linkAuthor">Submitted by ${response.author}</span>
-            </div>
-          `;
-          contentBox.prepend(link);
-          linkAdded.classList += ' success';
-          linkAdded.innerHTML = `<p>The link ${response.name} was successfully added!</p>`;
-        });
+          body: JSON.stringify(link)
+        })
+        .then(response => response.json())
+        .then(response => loadLinks());
+      linkAdded.classList += ' success';
+      linkAdded.innerHTML = `<p>The link was ${link.name} successfully added!</p>`;
       authorInput.value = '';
       nameInput.value = '';
       addressInput.value = '';
-      addLinkForm.style.display = 'none';
+      addLinkForm.classList.toggle('display-block');
     }
   };
 

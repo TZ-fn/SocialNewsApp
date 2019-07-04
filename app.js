@@ -2,7 +2,22 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const jsonParser = bodyParser.json();
-const posts = [];
+const posts = [{
+    author: 'Tomasz',
+    name: 'Google',
+    address: 'www.google.com'
+  },
+  {
+    author: 'Tomasz',
+    name: 'GitHub',
+    address: 'https: //github.com/'
+  },
+  {
+    author: 'Tomasz',
+    name: 'MDN Web Docs',
+    address: 'https://developer.mozilla.org/'
+  }
+];
 
 
 app.listen(process.env.PORT || 3000, () => {
@@ -22,6 +37,10 @@ app.use(express.static(`${__dirname}`));
 
 app.get('/', (request, response) => {
   response.sendFile(`${__dirname}/index.html`);
+});
+
+app.get('/links', (request, response) => {
+  response.send([posts]);
 });
 
 app.post('/', jsonParser, (request, response) => {
