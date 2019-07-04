@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const jsonParser = bodyParser.json();
-const posts = [{
+let posts = [{
     id: 'TomGoow.g',
     author: 'Tomasz',
     name: 'Google',
@@ -21,7 +21,6 @@ const posts = [{
     address: 'https://developer.mozilla.org/'
   }
 ];
-
 
 app.listen(process.env.PORT || 3000, () => {
   console.log('App running!');
@@ -63,4 +62,10 @@ app.post('/', jsonParser, (request, response) => {
     name: name,
     address: address
   });
+});
+
+app.post('/deletePost', jsonParser, (request, response) => {
+  const deletePostID = request.body[0];
+  posts = posts.filter(post => post.id !== deletePostID);
+  response.send('');
 });

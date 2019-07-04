@@ -40,16 +40,15 @@ window.onload = function () {
   };
 
   const deleteLink = button => {
-    fetch('http://localhost:3000/', {
+    fetch('http://localhost:3000/deletePost/', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(link)
+        body: JSON.stringify([button.dataset.id])
       })
-      .then(response => response.text())
-      .then(response => console.log(response))
+      .then(() => loadLinks());
   };
 
   const showAddLink = () => {
@@ -65,7 +64,7 @@ window.onload = function () {
           let link = document.createElement('div');
           link.innerHTML += `
             <div class="link">
-              <button data-id='${post.id}' class="btn btn-danger delete-post-btn glyphicon glyphicon-remove"></button>
+              <button aria-label="Delete this post." title="Delete this post." data-id="${post.id}" class="btn btn-danger delete-post-btn glyphicon glyphicon-remove"></button>
               <h4 class="linkHeadline">
                 <a class="linkTitle" href='${post.address}'>${post.name}</a>
                 <span class="linkUrl">${post.address}</span>
@@ -85,8 +84,6 @@ window.onload = function () {
   };
 
   loadLinks();
-
-
 
   addLinkBtn.addEventListener('click', () => addLink(authorInput.value.trim(), nameInput.value.trim(), addressInput.value.trim()));
   submitBtn.addEventListener('click', () => showAddLink());
