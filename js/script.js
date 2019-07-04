@@ -9,44 +9,17 @@ window.onload = function () {
   const addressInput = document.querySelector('#addressInput');
   const linkAdded = document.querySelector('#linkAdded');
 
-  const showAddLink = () => {
-    addLinkForm.classList.toggle('display-block');
-  };
-
-  const loadLinks = () => {
-    fetch('http://localhost:3000/links')
-      .then(response => response.json())
-      .then(response => {
-        contentBox.innerHTML = '';
-        response[0].forEach(post => {
-          let link = document.createElement('div');
-          link.innerHTML += `
-            <div class="link">
-              <button class="delete-post-btn"><span class="glyphicon glyphicon-remove" aria-hidden="true"></<span></button>
-              <h4 class="linkHeadline">
-                <a class="linkTitle" href='${post.address}'>${post.name}</a>
-                <span class="linkUrl">${post.address}</span>
-              </h4>
-              <span class="linkAuthor">Submitted by ${post.author}</span>
-            </div>
-            `;
-          contentBox.prepend(link);
-        });
-      });
-  };
-
-  loadLinks();
-
   const addLink = (author, name, address) => {
     if (author === '' || name === '' || address === '') {
       alert('Please fill missing data.');
     } else {
       address = (address.slice(0, 7) === 'http://' || address.slice(0, 8) === 'https://') ? address : `http://${address}`;
       let link = {
+        id: `${author.slice(0, 3)}${name.slice(0, 3)}${address.slice(10, 13)}`,
         author: author,
         name: name,
         address: address
-      }
+      };
       fetch('http://localhost:3000/', {
           method: 'POST',
           headers: {
@@ -65,6 +38,55 @@ window.onload = function () {
       addLinkForm.classList.toggle('display-block');
     }
   };
+
+  const deleteLink = button => {
+    fetch('http://localhost:3000/', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(link)
+      })
+      .then(response => response.text())
+      .then(response => console.log(response))
+  };
+
+  const showAddLink = () => {
+    addLinkForm.classList.toggle('display-block');
+  };
+
+  const loadLinks = () => {
+    fetch('http://localhost:3000/links')
+      .then(response => response.json())
+      .then(response => {
+        contentBox.innerHTML = '';
+        response[0].forEach(post => {
+          let link = document.createElement('div');
+          link.innerHTML += `
+            <div class="link">
+              <button data-id='${post.id}' class="btn btn-danger delete-post-btn glyphicon glyphicon-remove"></button>
+              <h4 class="linkHeadline">
+                <a class="linkTitle" href='${post.address}'>${post.name}</a>
+                <span class="linkUrl">${post.address}</span>
+              </h4>
+              <span class="linkAuthor">Submitted by ${post.author}</span>
+            </div>
+            `;
+          contentBox.prepend(link);
+        });
+      })
+      .then(() => {
+        const deletePostBtn = document.querySelectorAll('.delete-post-btn');
+        deletePostBtn.forEach(button => {
+          button.addEventListener('click', (e) => deleteLink(e.target));
+        });
+      });
+  };
+
+  loadLinks();
+
+
 
   addLinkBtn.addEventListener('click', () => addLink(authorInput.value.trim(), nameInput.value.trim(), addressInput.value.trim()));
   submitBtn.addEventListener('click', () => showAddLink());
