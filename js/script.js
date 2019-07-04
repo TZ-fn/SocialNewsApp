@@ -10,7 +10,7 @@ window.onload = function () {
   const linkAdded = document.querySelector('#linkAdded');
 
   const showAddLink = () => {
-    addLinkForm.style.display = 'block';
+    addLinkForm.classList.toggle('display-block');
   };
 
   const addLink = (author, name, address) => {
