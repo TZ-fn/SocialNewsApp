@@ -20,7 +20,7 @@ window.onload = function () {
         name: name,
         address: address
       };
-      fetch('http://localhost:3000/', {
+      fetch('https://safe-caverns-39435.herokuapp.com/', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
@@ -40,7 +40,7 @@ window.onload = function () {
   };
 
   const deleteLink = button => {
-    fetch('http://localhost:3000/deletePost/', {
+    fetch('https://safe-caverns-39435.herokuapp.com/deletePost/', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -56,7 +56,7 @@ window.onload = function () {
   };
 
   const loadLinks = () => {
-    fetch('http://localhost:3000/links')
+    fetch('https://safe-caverns-39435.herokuapp.com/links')
       .then(response => response.json())
       .then(response => {
         contentBox.innerHTML = '';
