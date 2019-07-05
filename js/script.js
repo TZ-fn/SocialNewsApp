@@ -66,7 +66,7 @@ window.onload = function () {
             <div class="link">
               <button aria-label="Delete this post." title="Delete this post." data-id="${post.id}" class="btn btn-danger delete-post-btn glyphicon glyphicon-remove"></button>
               <h4 class="linkHeadline">
-                <a class="linkTitle" href='${post.address}'>${post.name}</a>
+                <a class="linkTitle" href='${post.address}' target="_blank">${post.name}</a>
                 <span class="linkUrl">${post.address}</span>
               </h4>
               <span class="linkAuthor">Submitted by ${post.author}</span>
