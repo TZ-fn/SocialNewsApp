@@ -9,34 +9,81 @@ window.onload = function () {
   const addressInput = document.querySelector('#addressInput');
   const linkAdded = document.querySelector('#linkAdded');
 
-  const showAddLink = () => {
-    addLinkForm.style.display = 'block';
-  };
-
   const addLink = (author, name, address) => {
     if (author === '' || name === '' || address === '') {
       alert('Please fill missing data.');
     } else {
       address = (address.slice(0, 7) === 'http://' || address.slice(0, 8) === 'https://') ? address : `http://${address}`;
-      let link = document.createElement('div');
-      link.innerHTML += `
-      <div class="link">
-          <h4 class="linkHeadline">
-            <a class="linkTitle" href='${address}'>${name}</a>
-            <span class="linkUrl">${address}</span>
-          </h4>
-          <span class="linkAuthor">Submitted by ${author}</span>
-        </div>
-      `;
-      contentBox.prepend(link);
+      let link = {
+        id: `${author.slice(0, 3)}${name.slice(0, 3)}${address.slice(10, 13)}`,
+        author: author,
+        name: name,
+        address: address
+      };
+      fetch('https://social-news-appli.herokuapp.com/', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(link)
+        })
+        .then(response => response.json())
+        .then(response => loadLinks());
       linkAdded.classList += ' success';
-      linkAdded.innerHTML = `<p>The link ${name} was successfully added!</p>`;
+      linkAdded.innerHTML = `<p>The link was ${link.name} successfully added!</p>`;
       authorInput.value = '';
       nameInput.value = '';
       addressInput.value = '';
-      addLinkForm.style.display = 'none';
+      addLinkForm.classList.toggle('display-block');
     }
   };
+
+  const deleteLink = button => {
+    fetch('https://social-news-appli.herokuapp.com/deletePost/', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify([button.dataset.id])
+      })
+      .then(() => loadLinks());
+  };
+
+  const showAddLink = () => {
+    addLinkForm.classList.toggle('display-block');
+  };
+
+  const loadLinks = () => {
+    fetch('https://social-news-appli.herokuapp.com/links')
+      .then(response => response.json())
+      .then(response => {
+        contentBox.innerHTML = '';
+        response[0].forEach(post => {
+          let link = document.createElement('div');
+          link.innerHTML += `
+            <div class="link">
+              <button aria-label="Delete this post." title="Delete this post." data-id="${post.id}" class="btn btn-danger delete-post-btn glyphicon glyphicon-remove"></button>
+              <h4 class="linkHeadline">
+                <a class="linkTitle" href='${post.address}' target="_blank">${post.name}</a>
+                <span class="linkUrl">${post.address}</span>
+              </h4>
+              <span class="linkAuthor">Submitted by ${post.author}</span>
+            </div>
+            `;
+          contentBox.prepend(link);
+        });
+      })
+      .then(() => {
+        const deletePostBtn = document.querySelectorAll('.delete-post-btn');
+        deletePostBtn.forEach(button => {
+          button.addEventListener('click', (e) => deleteLink(e.target));
+        });
+      });
+  };
+
+  loadLinks();
 
   addLinkBtn.addEventListener('click', () => addLink(authorInput.value.trim(), nameInput.value.trim(), addressInput.value.trim()));
   submitBtn.addEventListener('click', () => showAddLink());

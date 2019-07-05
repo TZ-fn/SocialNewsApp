@@ -34,6 +34,23 @@ input:valid {
   padding-left: 0;
 }
 
+.display-block {
+  display: block;
+}
+
+.delete-post-btn {
+  color: rgb(255, 255, 255);
+  float: right;
+  margin: 0;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.delete-post-btn:hover {
+  color: rgb(93, 93, 93);
+}
+
 /* Main link element (<div> tag) */
 
 .link {

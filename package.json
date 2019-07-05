@@ -1,0 +1,27 @@
+{
+  "name": "socialnewsapp",
+  "version": "1.0.0",
+  "description": "This is a project from [\"The JavaScipt Way\"](https://github.com/bpesquet/thejsway) book by Baptiste Pesquet. It is a simple program for adding and managing links ([source](https://github.com/bpesquet/thejsway/blob/master/manuscript/chapter19.md)). Links, are stored on server and then send by fetch requests. I used HTML, CSS, JavaScript, Node.js with Express framework and had modified the original app. You can find live app [here](https://github.com/).",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "6.11.0",
+    "npm": "3.10.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TZ-fn/SocialNewsApp.git"
+  },
+  "author": "Tomasz Ziolkowski",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3"
+  },
+  "bugs": {
+    "url": "https://github.com/TZ-fn/SocialNewsApp/issues"
+  },
+  "homepage": "https://github.com/TZ-fn/SocialNewsApp#readme"
+}
