@@ -20,7 +20,7 @@ window.onload = function () {
         name: name,
         address: address
       };
-      fetch('https://safe-caverns-39435.herokuapp.com/', {
+      fetch('https://social-news-appli.herokuapp.com/', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
@@ -40,7 +40,7 @@ window.onload = function () {
   };
 
   const deleteLink = button => {
-    fetch('https://safe-caverns-39435.herokuapp.com/deletePost/', {
+    fetch('https://social-news-appli.herokuapp.com/deletePost/', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -56,7 +56,7 @@ window.onload = function () {
   };
 
   const loadLinks = () => {
-    fetch('https://safe-caverns-39435.herokuapp.com/links')
+    fetch('https://social-news-appli.herokuapp.com/links')
       .then(response => response.json())
       .then(response => {
         contentBox.innerHTML = '';
