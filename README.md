@@ -1,2 +1,2 @@
 # Social News App
-This is a project from ["The JavaScipt Way"](https://github.com/bpesquet/thejsway) book by Baptiste Pesquet. It is a simple program for adding and managing links ([source](https://github.com/bpesquet/thejsway/blob/master/manuscript/chapter19.md)).
+This is a project from ["The JavaScipt Way"](https://github.com/bpesquet/thejsway) book by Baptiste Pesquet. It is a simple program for adding and managing links ([source](https://github.com/bpesquet/thejsway/blob/master/manuscript/chapter19.md)). Links, are stored on server and then send by fetch requests. I used HTML, CSS, JavaScript, Node.js with Express framework and had modified the original app. You can find live app [here](https://github.com/).
