@@ -4,19 +4,19 @@ const uuid = require('uuid');
 const app = express();
 const jsonParser = bodyParser.json();
 let posts = [{
-    id: 'TomGoow.g',
+    id: uuid.v4(),
     author: 'Tomasz',
     name: 'Google',
     address: 'https://www.google.com'
   },
   {
-    id: 'TomGitthu',
+    id: uuid.v4(),
     author: 'Tomasz',
     name: 'GitHub',
     address: 'https://github.com/'
   },
   {
-    id: 'TomMDNvel',
+    id: uuid.v4(),
     author: 'Tomasz',
     name: 'MDN Web Docs',
     address: 'https://developer.mozilla.org/'
@@ -45,7 +45,6 @@ app.get('/links', (request, response) => {
 });
 
 app.post('/', jsonParser, (request, response) => {
-  const id = request.body.id;
   const author = request.body.author;
   const name = request.body.name;
   const address = request.body.address;
