@@ -22,9 +22,7 @@ let posts = [{
   }
 ];
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log('App running!');
-});
+app.listen(process.env.PORT || 3000, () => console.log('App running!'));
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
