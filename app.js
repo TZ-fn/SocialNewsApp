@@ -20,6 +20,12 @@ let posts = [{
     author: 'Tomasz',
     name: 'MDN Web Docs',
     address: 'https://developer.mozilla.org/'
+  },
+  {
+    id: uuid.v4(),
+    author: 'Tomasz',
+    name: 'DuckDuckGo',
+    address: 'https://duckduckgo.com/'
   }
 ];
 
@@ -57,7 +63,7 @@ app.post('/', jsonParser, (request, response) => {
   response.send([posts]);
 });
 
-app.post('/deletePost', jsonParser, (request, response) => {
+app.delete('/deletePost', jsonParser, (request, response) => {
   const deletePostID = request.body[0];
   posts = posts.filter(post => post.id !== deletePostID);
   response.send('');

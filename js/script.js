@@ -40,7 +40,7 @@ window.onload = function () {
 
   const deleteLink = button => {
     fetch('https://social-news-appli.herokuapp.com/deletePost/', {
-        method: 'POST',
+        method: 'DELETE',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json'
