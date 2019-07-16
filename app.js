@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const uuid = require('uuid');
 const app = express();
 const jsonParser = bodyParser.json();
 let posts = [{
@@ -49,7 +50,7 @@ app.post('/', jsonParser, (request, response) => {
   const name = request.body.name;
   const address = request.body.address;
   posts.push({
-    id: id,
+    id: uuid.v4(),
     author: author,
     name: name,
     address: address

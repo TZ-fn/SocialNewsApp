@@ -15,7 +15,6 @@ window.onload = function () {
     } else {
       address = (address.slice(0, 7) === 'http://' || address.slice(0, 8) === 'https://') ? address : `http://${address}`;
       let link = {
-        id: `${author.slice(0, 3)}${name.slice(0, 3)}${address.slice(10, 13)}`,
         author: author,
         name: name,
         address: address
@@ -51,7 +50,7 @@ window.onload = function () {
       .then(() => loadLinks());
   };
 
-  const showAddLink = () => {
+  const showAddLinkForm = () => {
     addLinkForm.classList.toggle('display-block');
   };
 
@@ -88,6 +87,6 @@ window.onload = function () {
   loadLinks();
 
   addLinkBtn.addEventListener('click', () => addLink(authorInput.value.trim(), nameInput.value.trim(), addressInput.value.trim()));
-  submitBtn.addEventListener('click', () => showAddLink());
+  submitBtn.addEventListener('click', () => showAddLinkForm());
   linkAdded.addEventListener('animationend', () => linkAdded.classList = 'link-added alert alert-success');
 };
