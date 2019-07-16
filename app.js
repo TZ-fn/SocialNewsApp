@@ -56,12 +56,7 @@ app.post('/', jsonParser, (request, response) => {
     name: name,
     address: address
   });
-  response.send({
-    id: id,
-    author: author,
-    name: name,
-    address: address
-  });
+  response.send([posts]);
 });
 
 app.post('/deletePost', jsonParser, (request, response) => {

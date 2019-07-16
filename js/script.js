@@ -60,9 +60,33 @@ window.onload = function () {
       .then(response => response.json())
       .then(response => {
         contentBox.innerHTML = '';
-        response[0].forEach(post => {
-          let link = document.createElement('div');
-          link.innerHTML += `
+        renderLinks(response[0]);
+        //   response[0].forEach(post => {
+        //     let link = document.createElement('div');
+        //     link.innerHTML += `
+        //       <div class="link">
+        //         <button aria-label="Delete this post." title="Delete this post." data-id="${post.id}" class="btn btn-danger delete-post-btn glyphicon glyphicon-remove"></button>
+        //         <h4 class="linkHeadline">
+        //           <a class="linkTitle" href='${post.address}' target="_blank">${post.name}</a>
+        //           <span class="linkUrl">${post.address}</span>
+        //         </h4>
+        //         <span class="linkAuthor">Submitted by ${post.author}</span>
+        //       </div>
+        //       `;
+        //     contentBox.prepend(link);
+        //   });
+        // })
+        // .then(() => {
+        //   const deletePostBtn = document.querySelectorAll('.delete-post-btn');
+        //   deletePostBtn.forEach(button => {
+        //     button.addEventListener('click', (e) => deleteLink(e.target));
+        //   });
+      });
+  };
+  const renderLinks = links => {
+    links.forEach(post => {
+      let link = document.createElement('div');
+      link.innerHTML += `
             <div class="link">
               <button aria-label="Delete this post." title="Delete this post." data-id="${post.id}" class="btn btn-danger delete-post-btn glyphicon glyphicon-remove"></button>
               <h4 class="linkHeadline">
@@ -72,15 +96,13 @@ window.onload = function () {
               <span class="linkAuthor">Submitted by ${post.author}</span>
             </div>
             `;
-          contentBox.prepend(link);
-        });
-      })
-      .then(() => {
-        const deletePostBtn = document.querySelectorAll('.delete-post-btn');
-        deletePostBtn.forEach(button => {
-          button.addEventListener('click', (e) => deleteLink(e.target));
-        });
+      contentBox.prepend(link);
+    }).then(() => {
+      const deletePostBtn = document.querySelectorAll('.delete-post-btn');
+      deletePostBtn.forEach(button => {
+        button.addEventListener('click', (e) => deleteLink(e.target));
       });
+    });
   };
 
   loadLinks();
